@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Item equippedItem;
+    [SerializeField] Transform itemTPSpot;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -14,11 +15,12 @@ public class Player : MonoBehaviour
     }
     public void Equip(Item item)
     {
-        if (!equippedItem) equippedItem = item;
+        if (equippedItem.name=="no Item") equippedItem = item;
         else
         {
-            Instantiate(equippedItem, transform.position, transform.rotation);
+            if(equippedItem.name!="no Item") equippedItem.transform.position = transform.position;
             equippedItem = item;
         }
+        equippedItem.transform.position = itemTPSpot.transform.position;
     }
 }

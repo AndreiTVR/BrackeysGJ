@@ -6,13 +6,14 @@ public class Item : MonoBehaviour
 {
     public string itemName;
     public Sprite itemSprite;
+    [SerializeField] Player player;
     private void Start()
     {
+        player = FindObjectOfType<Player>();
         itemSprite = GetComponent<SpriteRenderer>().sprite;
     }
     public void OnMouseDown()
     {
-        Player player = FindObjectOfType<Player>();
         player.Equip(this);
     }
 }
